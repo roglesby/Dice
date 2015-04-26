@@ -1,0 +1,16 @@
+{
+    "contents" : "Final Project  \n========================================================\n  \nDeveoping Data Projects - Final Project  \nData Science Specialization  \nCoursera - John Hopkins Bloomberg School of Public Health  \nNon Transitive Dice by Roger Oglesby on 24th April 2015\n\nNon Transitive Dice\n========================================================\n\n\"If a game looks too good to be true, it probably is.\"  \n\nIn this simulation of a simple dice game, the odds looks stacked in your favour...  \n- There are only three dice to select from.  \n- You get first pick of the dice.  \n- The simulation lasts 100 rolls to reduce luck \n  \nWhat is the catch?\n========================================================\nThe dice are not standard cubes with 1, 2, 3, 4, 5, 6 spots  \n\n- Die A:  3, 3, 3, 3, 3, 6 (mostly 3s)  \n- Die B:  2, 2, 2, 5, 5, 5 (2s and 5s)  \n- Die C:  1, 4, 4, 4, 4, 4 (mostly 4s)  \n  \nWhich cube do you select? How confident are you of winning the best of 100 rolls?  \nOn each roll, highest score wins.  \nYou can't get a tie with these dice.\n\nTheory\n========================================================\nThese non transitive dice illustrate the counter intuitive principle\nthat  \nDie A is better than Die B  \nand  \nDie B is better than Die C  \nbut strangely  \nDie A is not better than Die C. In fact Die C is better than Die A.  \n\n```r\nsummary(cars)\n```\n\n```\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00  \n```\n\nSlide With Plot\n========================================================\n\n![plot of chunk unnamed-chunk-2](Dice.Rmd-figure/unnamed-chunk-2-1.png) \n",
+    "created" : 1430061838265.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2804859910",
+    "id" : "EEABA68",
+    "lastKnownWriteTime" : 1429967864,
+    "path" : "~/Dice/Dice.Rmd.md",
+    "project_path" : "Dice.Rmd.md",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "markdown"
+}

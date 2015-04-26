@@ -1,0 +1,16 @@
+{
+    "contents" : "\nlibrary(ggplot2)\nA <- c(1,1,3,1,1,1)\nB <- c(2,1,2,2,2,2)\nC <- c(3,3,5,3,3,3)\nmypick <- c(2,3,1)\ndice  <- cbind(A,B,C)\ndicename <- c(\"Die A\",\"Die B\",\"Die C\")\n\npick <- 3\ndicename[1]\ndicename[mypick[pick]]\n\nGame <- as.data.frame( cbind(\n        sample (dice[,pick],100,replace=TRUE),\n        sample (dice[,mypick[pick]],100,replace=TRUE),\n        sample (0,100,replace=TRUE),\n        1:100\n        ))\nnames(Game) <- c(\"pick\",\"yourpick\",\"score\",\"roll\")\nscore <- 0\nfor (i in 1:100) {if (Game[i,1]>Game[i,2]) (score=score+1) else (score=score-1)\n                Game[i,3]=score}\nscore\ngameplot <- function(g) {\n        g2 = ggplot(g) \n        g2=g2      + geom_point(aes(x=roll, y=score)) \n        g2=g2        + geom_line(aes(x=roll, y=score))\n        g2 = g2 + xlab(\"+ = My winning, - = Your winning\") \n        #+ylim(min(s,0),max(s))\n        g2 = g2 + ylab(\"my test\")+geom_abline(intercept=0, slope=0,size=2,colour=\"red\")\n        g2= g2+ geom_text(x = 5, y = 3.2, label=\"I win\", angle = 20,size=12)\n        g2= g2+ geom_text(x = 9, y = 0.2, label=\"You win\", angle = 10,size=12)\n        g2=g2+theme(axis.title.x =element_text(size=20))\n        g2=g2+theme(axis.text=element_text(size=20))\n}\ng <- gameplot(Game)\ng\n\ncat(dicename[pick], \"was your choice and I pick\", dicename[mypick[pick]])\n\nA <- c(3,3,3,3,3,6)\nB <- c(2,2,2,5,5,5)\nC <- c(1,4,4,4,4,4)\nprint(cat(AvB,BvC,CvA))\n\n",
+    "created" : 1430063829906.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2049144362",
+    "id" : "DC36C938",
+    "lastKnownWriteTime" : 1430065696,
+    "path" : "~/Testing/dice test.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

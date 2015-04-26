@@ -1,0 +1,16 @@
+{
+    "contents" : "library(shiny)\nlibrary(ggplot2)\n# Initialise with a seed for repeatability\n# set.seed(10)\n# Initialise the transitive dice\nA <- c(3,3,3,3,3,6)\nB <- c(2,2,2,5,5,5)\nC <- c(1,4,4,4,4,4)\n# Die 1(A) is better than 2(B)\n# Die 2(B) is better than 3(C)\n# Die 3(C) is better than 1(A)\nmypick <- c(3,1,2)\ndice  <- cbind(A,B,C)\ndicename <- c(\"Die A\",\"Die B\",\"Die C\")\nsample  <- 1000\n# The output of the game is a graph of the score\ngameplot <- function(g) {\n        g2 = ggplot(g) \n        g2 = g2 + geom_point(aes(x=roll, y=score)) \n        g2 = g2 + geom_line(aes(x = roll, y = score))\n        g2 = g2 + xlab(\"A positive score means I am winning\") \n        g2 = g2 + ylab(\"Score\" )\n        g2 = g2 + geom_abline(intercept = 0, slope = 0, size = 1, colour = \"black\")\n        g2 = g2 + geom_text(x = 50, y = 20, label=\"I win by \", angle = 0, size = 8, colour = \"red\")\n        g2 = g2 + geom_text(x = 200, y = 20, label=g$score[sample], angle = 0, size = 8, colour = \"red\")\n        g2 = g2 + theme(axis.title.x = element_text(size = 20))\n        g2 = g2 + theme(axis.text = element_text(size = 20))\n        g2\n}\n# Shiny is such a clever beast!\nshinyServer(\n        function(input, output) {\n                output$randPlot  <- renderPlot({\n                        # Set up the Game with the two choices of dice and keep score\n                        Game <- as.data.frame( \n                                cbind(\n                                        sample (dice[,as.numeric(input$pick)],sample,replace=TRUE),\n                                        sample (dice[,mypick[as.numeric(input$pick)]],sample,replace=TRUE),\n                                        sample (0,sample,replace=TRUE),\n                                        1:sample\n                                )\n                        )\n                        names(Game) <- c(\"pick\",\"yourpick\",\"score\",\"roll\")\n                        # Now play the game\n                        score <<- 0\n                        for (i in 1:sample) {\n                                if (Game[i,1]>Game[i,2]) (score<-score-1) \n                                else (score<-score+1)\n                                Game[i,3]=score\n                        }\n                        # And plot the result\n                        gameplot(Game)\n                        })                \n                output$mess  <- renderPrint(\n                        # Don't forget some trash talking!\n                        cat(\"You picked\",\n                            noquote(dicename[as.numeric(input$pick)]),\n                            \" and I picked\",\n                            noquote(dicename[mypick[as.numeric(input$pick)]])\n                        ))\n        }\n)\n",
+    "created" : 1430056787187.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2029912325",
+    "id" : "B717E5BA",
+    "lastKnownWriteTime" : 1430056913,
+    "path" : "~/Dice/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

@@ -1,0 +1,73 @@
+---
+title       : Non Transitive Dice
+subtitle    : Coursera Data Science for John Hopkins Bloomberg School of Public Health
+author      : Roger Oglesby
+job         : Coursera Data Science Project
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Non Transitive Dice
+
+"If a game looks too good to be true, it probably is."  
+
+In this simulation of a simple dice game, the odds look stacked in your favour...  
+- There are only three dice to select from.  
+- You get first pick of the dice.  
+- The simulation lasts 1,000 rolls to reduce luck 
+- The dice are fair - each side is equally likely.  Probablity = 1/6
+- If you don't like the result the first time, try again with a different die
+ 
+    
+Never say die : dice (plural) but die (singular).  "One die but two dice".
+
+---
+
+## What is the catch?
+
+The dice are not standard cubes with 1, 2, 3, 4, 5, 6 spots  
+
+- Die A:  3, 3, 3, 3, 3, 6 (mostly 3s)  
+- Die B:  2, 2, 2, 5, 5, 5 (2s and 5s)  
+- Die C:  1, 4, 4, 4, 4, 4 (mostly 4s)  
+  
+Which cube do you select? How confident are you of winning the best of 1,000 rolls?  
+  
+On each roll, highest score wins.  
+  
+You can't get a tie with these dice.
+
+---  
+## Theory
+These non transitive dice illustrate the counter intuitive principle
+that  
+- Die A is better than Die B  
+and  
+- Die B is better than Die C  
+but strangely  
+- Die A is not better than Die C. In fact Die C is better than Die A.  
+  
+No matter which die you select, I can pick a better one.
+
+---  
+## Theory (continued)
+```{r}
+# initialise the three dice A B and C
+A <- c(3,3,3,3,3,6)
+B <- c(2,2,2,5,5,5)
+C <- c(1,4,4,4,4,4)
+# calculate the probability of victory A v B, B v C and C v A
+AvB  <- 0; BvC <- 0; CvA <- 0
+for( i in 1:6)(for (j in 1:6) (if (A[i] > B[j]) (AvB = AvB + 1)))
+for( i in 1:6)(for (j in 1:6) (if (B[i] > C[j]) (BvC = BvC + 1)))
+for( i in 1:6)(for (j in 1:6) (if (C[i] > A[j]) (CvA = CvA + 1)))
+print(cat(AvB,BvC,CvA))
+```
+Die A is better than die B in `r AvB` out of 36 rolls.  
+Die B is better than die C in `r BvC` out of 36 rolls.  
+Die C is better than die A in `r CvA` out of 36 rolls.  
+Sorry - you never stood a chance of winning. The game was rigged.

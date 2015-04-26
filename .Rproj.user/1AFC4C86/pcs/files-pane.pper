@@ -1,0 +1,9 @@
+{
+    "path" : "~/Dice/Dice1",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

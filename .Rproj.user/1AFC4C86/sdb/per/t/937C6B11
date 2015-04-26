@@ -1,0 +1,16 @@
+{
+    "contents" : "---\ntitle       : Non Transitive Dice\nsubtitle    : Coursera Data Science for John Hopkins Bloomberg School of Public Health\nauthor      : Roger Oglesby\njob         : Coursera Data Science Project\nframework   : io2012        # {io2012, html5slides, shower, dzslides, ...}\nhighlighter : highlight.js  # {highlight.js, prettify, highlight}\nhitheme     : tomorrow      # \nwidgets     : []            # {mathjax, quiz, bootstrap}\nmode        : selfcontained # {standalone, draft}\nknit        : slidify::knit2slides\n---\n\n## Non Transitive Dice\n\n\"If a game looks too good to be true, it probably is.\"  \n\nIn this simulation of a simple dice game, the odds look stacked in your favour...  \n- There are only three dice to select from.  \n- You get first pick of the dice.  \n- The simulation lasts 1,000 rolls to reduce luck \n- The dice are fair - each side is equally likely.  Probablity = 1/6\n- If you don't like the result the first time, try again with a different die\n \n    \nNever say die : dice (plural) but die (singular).  \"One die but two dice\".\n\n---\n\n## What is the catch?\n\nThe dice are not standard cubes with 1, 2, 3, 4, 5, 6 spots  \n\n- Die A:  3, 3, 3, 3, 3, 6 (mostly 3s)  \n- Die B:  2, 2, 2, 5, 5, 5 (2s and 5s)  \n- Die C:  1, 4, 4, 4, 4, 4 (mostly 4s)  \n  \nWhich cube do you select? How confident are you of winning the best of 1,000 rolls?  \n  \nOn each roll, highest score wins.  \n  \nYou can't get a tie with these dice.\n\n---  \n## Theory\nThese non transitive dice illustrate the counter intuitive principle\nthat  \n- Die A is better than Die B  \nand  \n- Die B is better than Die C  \nbut strangely  \n- Die A is not better than Die C. In fact Die C is better than Die A.  \n  \nNo matter which die you select, I can pick a better one.\n\n---  \n## Theory (continued)\n```{r}\n# initialise the three dice A B and C\nA <- c(3,3,3,3,3,6)\nB <- c(2,2,2,5,5,5)\nC <- c(1,4,4,4,4,4)\n# calculate the probability of victory A v B, B v C and C v A\nAvB  <- 0; BvC <- 0; CvA <- 0\nfor( i in 1:6)(for (j in 1:6) (if (A[i] > B[j]) (AvB = AvB + 1)))\nfor( i in 1:6)(for (j in 1:6) (if (B[i] > C[j]) (BvC = BvC + 1)))\nfor( i in 1:6)(for (j in 1:6) (if (C[i] > A[j]) (CvA = CvA + 1)))\nprint(cat(AvB,BvC,CvA))\n```\nDie A is better than die B in `r AvB` out of 36 rolls.  \nDie B is better than die C in `r BvC` out of 36 rolls.  \nDie C is better than die A in `r CvA` out of 36 rolls.  \nSorry - you never stood a chance of winning. The game was rigged.\n",
+    "created" : 1430061472984.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "988468079",
+    "id" : "937C6B11",
+    "lastKnownWriteTime" : 1430065697,
+    "path" : "~/Dice/Dice1/index.Rmd",
+    "project_path" : "Dice1/index.Rmd",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_markdown"
+}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Non Transitive Dice</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Non Transitive Dice">
+  <meta name="author" content="Roger Oglesby">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Non Transitive Dice</h1>
+    <h2>Coursera Data Science for John Hopkins Bloomberg School of Public Health</h2>
+    <p>Roger Oglesby<br/>Coursera Data Science Project</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Non Transitive Dice</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>&quot;If a game looks too good to be true, it probably is.&quot;  </p>
+
+<p>In this simulation of a simple dice game, the odds look stacked in your favour...  </p>
+
+<ul>
+<li>There are only three dice to select from.<br></li>
+<li>You get first pick of the dice.<br></li>
+<li>The simulation lasts 1,000 rolls to reduce luck </li>
+<li>The dice are fair - each side is equally likely.  Probablity = 1/6</li>
+<li>If you don&#39;t like the result the first time, try again with a different die</li>
+</ul>
+
+<p>Never say die : dice (plural) but die (singular).  &quot;One die but two dice&quot;.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>What is the catch?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The dice are not standard cubes with 1, 2, 3, 4, 5, 6 spots  </p>
+
+<ul>
+<li>Die A:  3, 3, 3, 3, 3, 6 (mostly 3s)<br></li>
+<li>Die B:  2, 2, 2, 5, 5, 5 (2s and 5s)<br></li>
+<li>Die C:  1, 4, 4, 4, 4, 4 (mostly 4s)<br></li>
+</ul>
+
+<p>Which cube do you select? How confident are you of winning the best of 1,000 rolls?  </p>
+
+<p>On each roll, highest score wins.  </p>
+
+<p>You can&#39;t get a tie with these dice.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Theory</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>These non transitive dice illustrate the counter intuitive principle
+that  </p>
+
+<ul>
+<li>Die A is better than Die B<br>
+and<br></li>
+<li>Die B is better than Die C<br>
+but strangely<br></li>
+<li>Die A is not better than Die C. In fact Die C is better than Die A.<br></li>
+</ul>
+
+<p>No matter which die you select, I can pick a better one.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Theory (continued)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r"># initialise the three dice A B and C
+A &lt;- c(3,3,3,3,3,6)
+B &lt;- c(2,2,2,5,5,5)
+C &lt;- c(1,4,4,4,4,4)
+# calculate the probability of victory A v B, B v C and C v A
+AvB  &lt;- 0; BvC &lt;- 0; CvA &lt;- 0
+for( i in 1:6)(for (j in 1:6) (if (A[i] &gt; B[j]) (AvB = AvB + 1)))
+for( i in 1:6)(for (j in 1:6) (if (B[i] &gt; C[j]) (BvC = BvC + 1)))
+for( i in 1:6)(for (j in 1:6) (if (C[i] &gt; A[j]) (CvA = CvA + 1)))
+print(cat(AvB,BvC,CvA))
+</code></pre>
+
+<pre><code>## 21 21 25NULL
+</code></pre>
+
+<p>Die A is better than die B in 21 out of 36 rolls.<br>
+Die B is better than die C in 21 out of 36 rolls.<br>
+Die C is better than die A in 25 out of 36 rolls.<br>
+Sorry - you never stood a chance of winning. The game was rigged.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Non Transitive Dice'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='What is the catch?'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Theory'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Theory (continued)'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
