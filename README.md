@@ -7,5 +7,6 @@ Thank to Brian Caffo, PhD, Jeff Leek, PhD, Roger D. Peng, PhD
 and the John Hopkins Bloomberg School of Public Health
 
 My project work can be seen at http://roglesby.shinyapps.io/Dice1/
-and my presnetation can be viewed at http://roglesby.shinyapps.io/Dice1/
+and my presentation can be viewed at http://roglesby.github.io/Dice/index.html
 
+The R code behind my application is available in this directory in the ui.R and server.R files.
