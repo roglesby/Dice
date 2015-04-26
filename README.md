@@ -7,5 +7,5 @@ Thank to Brian Caffo, PhD, Jeff Leek, PhD, Roger D. Peng, PhD
 and the John Hopkins Bloomberg School of Public Health
 
 My project work can be seen at http://roglesby.shinyapps.io/Dice1/
-and my presnetation can be viewed at http://roglesby.shinyapps.io/Dice1/
+and my presnetation pitch can be viewed at http://rpubs.com/roglesby/Dice
 
